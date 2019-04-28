@@ -1,0 +1,20 @@
+{
+  "name": "F8-hackerthon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeemyeong/F8-hackerthon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeemyeong/F8-hackerthon/issues"
+  },
+  "homepage": "https://github.com/jeemyeong/F8-hackerthon#readme"
+}
