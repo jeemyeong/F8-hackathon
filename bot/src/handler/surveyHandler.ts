@@ -20,8 +20,13 @@ export const surveyHandler = async (chat: Chat) => {
     defaultLanguage
   } = await surveyRepository.getSurvey();
   let language = defaultLanguage;
+  let skip = 0;
 
   for (const [questionIdx, question] of questions.entries()) {
+    if (skip > 0) {
+      skip -= 1;
+      continue;
+    }
     logger.debug(question);
     logger.debug(question.param);
     const answer = await chat[question.type](question.param[language]);
@@ -55,6 +60,10 @@ export const surveyHandler = async (chat: Chat) => {
         profileId,
         language,
       });
+    }
+
+    if (!!answer && !!answer.data && !!answer.data.skip) {
+      skip += answer.data.skip
     }
 
     if (!!answer && !!answer.data && answer.data.language) {

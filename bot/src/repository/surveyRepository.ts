@@ -39,13 +39,13 @@ const sampleSurvey = {
     "type": "say",
     "param": {
       "English": "I am so glad you are here!",
-      "Pidgin": "I dey happy sey you dey here"
+      "Pidgin": "I happy sey you dey here"
     }
   }, {
     "type": "say",
     "param": {
       "English": "I have just a few questions for you",
-      "Pidgin": "I bin wan ask you small questions"
+      "Pidgin": "e get small question when I wan ask you"
     }
   }, {
     "type": "askWithMessage",
@@ -59,10 +59,10 @@ const sampleSurvey = {
         }]
       },
       "Pidgin": {
-        "text": "Your answer go helep us sabi how pepu dey tink about malaria",
+        "text": "your answer go helep us sabi wetin people tink about malaria for naija",
         "quick_replies": [{
           "content_type": "text",
-          "title": "Let Go!",
+          "title": "oya , make we start",
           "payload": JSON.stringify({data: {"answer": "Let Go!"}})
         }]
       }
@@ -80,11 +80,11 @@ const sampleSurvey = {
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: true, "answer": "NO"}})
+          "payload": JSON.stringify({data: {"answer": "NO", "skip": 1}})
         }]
       },
       "Pidgin": {
-        "text": "Shey you sabi wetin malaria be?",
+        "text": "Shey you sabi wetin be malaria?",
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
@@ -92,10 +92,9 @@ const sampleSurvey = {
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: true, "answer": "NO"}})
+          "payload": JSON.stringify({data: {"answer": "NO", "skip": 1}})
         }]
       }
-
     }
   }, {
     "type": "askWithMessage",
@@ -109,19 +108,19 @@ const sampleSurvey = {
         }, {
           "content_type": "text",
           "title": "From sick people",
-          "payload": JSON.stringify({data: {break: true, "answer": "From sick people"}})
+          "payload": JSON.stringify({data: {"answer": "From sick people"}})
         }, {
           "content_type": "text",
           "title": "Dirty hands",
-          "payload": JSON.stringify({data: {break: true, "answer": "Dirty hands"}})
+          "payload": JSON.stringify({data: {"answer": "Dirty hands"}})
         }, {
           "content_type": "text",
           "title": "Other",
-          "payload": JSON.stringify({data: {break: true, "answer": "Other"}})
+          "payload": JSON.stringify({data: {"answer": "Other"}})
         }]
       },
       "Pidgin": {
-        "text": "Do you know how you get Malaria?",
+        "text": "You sabi as people dey take catch Malaria?",
         "quick_replies": [{
           "content_type": "text",
           "title": "Mosquitos",
@@ -129,20 +128,63 @@ const sampleSurvey = {
         }, {
           "content_type": "text",
           "title": "From sick people",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {"answer": "From sick people"}})
         }, {
           "content_type": "text",
           "title": "Dirty hands",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {"answer": "Dirty hands"}})
         }, {
           "content_type": "text",
           "title": "Other",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {"answer": "Other"}})
         }]
       }
-
     }
-  }, {
+    }, {
+      "type": "askWithMessage",
+      "param": {
+        "English": {
+          "text": "When was the last time you used a mosquito net at night?",
+          "quick_replies": [{
+            "content_type": "text",
+            "title": "Less than a week",
+            "payload": JSON.stringify({data: {"answer": "Less than a week"}})
+          }, {
+            "content_type": "text",
+            "title": "Less than a month",
+            "payload": JSON.stringify({data: {"answer": "Less than a month"}})
+          }, {
+            "content_type": "text",
+            "title": "More than a month",
+            "payload": JSON.stringify({data: {"answer": "More than a month"}})
+          }, {
+            "content_type": "text",
+            "title": "I never use mosquito nets",
+            "payload": JSON.stringify({data: {"answer": "I never use mosquito nets"}})
+          }]
+        },
+        "Pidgin": {
+          "text": "When be the last time wey you carry mosquito net sleep",
+          "quick_replies": [{
+            "content_type": "text",
+            "title": "Less than a week",
+            "payload": JSON.stringify({data: {"answer": "Less than a week"}})
+          }, {
+            "content_type": "text",
+            "title": "Less than a month",
+            "payload": JSON.stringify({data: {"answer": "Less than a month"}})
+          }, {
+            "content_type": "text",
+            "title": "More than a month",
+            "payload": JSON.stringify({data: {"answer": "More than a month"}})
+          }, {
+            "content_type": "text",
+            "title": "I never use mosquito nets",
+            "payload": JSON.stringify({data: {"answer": "I never use mosquito nets"}})
+          }]
+        }
+      }
+    }, {
     "type": "askWithMessage",
     "param": {
       "English": {
@@ -158,7 +200,7 @@ const sampleSurvey = {
         }]
       },
       "Pidgin": {
-        "text": "In the past months, have you used mosquito repellent?",
+        "text": "You don use mosquito cream for the past few months?",
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
@@ -186,7 +228,7 @@ const sampleSurvey = {
         }]
       },
       "Pidgin": {
-        "text": "In the past months, have you taken any other actions to protect yourself from mosquitoes?",
+        "text": "Since the last few months, you don do anything to take pursue mosquito comot for your domot?",
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
@@ -218,7 +260,7 @@ const sampleSurvey = {
         }]
       },
       "Pidgin": {
-        "text": "How likely are you to urge your friends to protect themselves from mosquitoes?",
+        "text": "You go fit tell your padi  make them protect themselves from mosquitos?",
         "quick_replies": [{
           "content_type": "text",
           "title": "Very Likely",
@@ -233,12 +275,6 @@ const sampleSurvey = {
           "payload": JSON.stringify({data: {"answer": "Not likely"}})
         }]
       }
-    }
-  }, {
-    "type": "say",
-    "param": {
-      "English": "Now, we want to see who people in different parts of Nigeria are responding to malaria",
-      "Pidgin": ""
     }
   }, {
     "type": "askWithMessage",
@@ -256,7 +292,7 @@ const sampleSurvey = {
         }]
       },
       "Pidgin": {
-        "text": "Do you mind sharing your location with us?",
+        "text": "You fit tell us where you dey?",
         "quick_replies": [{
           "content_type": "location",
           "title": "YES",
@@ -268,7 +304,51 @@ const sampleSurvey = {
         }]
       }
     }
-  }]
+  }, {
+      "type": "askWithMessage",
+      "param": {
+        "English": {
+          "text": "What age range are you in?",
+          "quick_replies": [{
+            "content_type": "text",
+            "title": "15-17",
+            "payload": JSON.stringify({data: {"answer": "15-17"}})
+          }, {
+            "content_type": "text",
+            "title": "18-24",
+            "payload": JSON.stringify({data: {"answer": "18-24"}})
+          }, {
+            "content_type": "text",
+            "title": "25-34",
+            "payload": JSON.stringify({data: {"answer": "25-34"}})
+          }, {
+            "content_type": "text",
+            "title": "35",
+            "payload": JSON.stringify({data: {"answer": "35"}})
+          }]
+        },
+        "Pidgin": {
+          "text": "Which age you for dey?",
+          "quick_replies": [{
+            "content_type": "text",
+            "title": "15-17",
+            "payload": JSON.stringify({data: {"answer": "15-17"}})
+          }, {
+            "content_type": "text",
+            "title": "18-24",
+            "payload": JSON.stringify({data: {"answer": "18-24"}})
+          }, {
+            "content_type": "text",
+            "title": "25-34",
+            "payload": JSON.stringify({data: {"answer": "25-34"}})
+          }, {
+            "content_type": "text",
+            "title": "35",
+            "payload": JSON.stringify({data: {"answer": "35"}})
+          }]
+        }
+      }
+    }]
 };
 
 const sampleSurveyPromise: Promise<any> = new Promise(resolve => {
