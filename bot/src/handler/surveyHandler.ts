@@ -1,5 +1,7 @@
 import { Chat } from '../@aiteq/messenger-bot';
 import { surveyRepository } from "../repository/surveyRepository";
+import logger from "../@aiteq/messenger-bot/logger";
+import { surveyPublisher } from "../event-publisher/surveyPublisher";
 
 export const surveyHandler = async (chat: Chat) => {
   const profileId = chat.getPartnerId();
@@ -13,13 +15,12 @@ export const surveyHandler = async (chat: Chat) => {
   let language = defaultLanguage;
 
   for await (const question of questions) {
-    console.log(question);
-    console.log(question.param);
-    console.log(question.param[language]);
+    logger.debug(question);
+    logger.debug(question.param);
     const answer = await chat[question.type](question.param[language]);
 
     if (!!answer && !!answer.data) {
-      surveyRepository.saveAnswerFromUser({profile, question, answer, surveyId, profileId});
+      surveyPublisher.saveAnswerFromUser({profile, question, answer, surveyId, profileId});
     }
 
     if (!!answer && !!answer.data && answer.data.language) {

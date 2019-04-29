@@ -1,6 +1,6 @@
 import * as AWS from 'aws-sdk';
 import * as uuid from 'node-uuid';
-AWS.config.update({region: 'us-west-2'});
+import logger from "../@aiteq/messenger-bot/logger";
 const docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2019-04-29'});
 
 const sampleSurvey = {
@@ -293,9 +293,9 @@ export const surveyRepository = {
 
     docClient.put(params, function(err, data) {
       if (err) {
-        console.log("[AWS_DOC_CLIENT] Error: ", err);
+        logger.error("[AWS_DOC_CLIENT] Error: ", err);
       } else {
-        console.log("[AWS_DOC_CLIENT] Success: ", data);
+        logger.info("[AWS_DOC_CLIENT] Success: ", data);
       }
     });
   },
@@ -311,10 +311,10 @@ export const surveyRepository = {
     return new Promise((resolve, reject) => {
       docClient.query(params, function(err, data) {
         if (err) {
-          console.log("[AWS_DOC_CLIENT] Error: ", err);
+          logger.error("[AWS_DOC_CLIENT] Error: ", err);
           reject(err)
         } else {
-          console.log("[AWS_DOC_CLIENT] Success: ", data);
+          logger.info("[AWS_DOC_CLIENT] Success: ", data);
           resolve(data)
         }
       });
