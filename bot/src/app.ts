@@ -28,5 +28,12 @@ bot.on(Webhook.Event.PERSISTENT_MENU, "get-started", surveyHandler);
 bot.on(Webhook.Event.GET_STARTED_BUTTON, "get-started", surveyHandler);
 bot.hear("Get started", surveyHandler);
 
+// @ts-ignore
+const app = bot.app;
+
+app.get('/', function(req, res) {
+  res.send('hello world');
+});
+
 bot.start();
 
