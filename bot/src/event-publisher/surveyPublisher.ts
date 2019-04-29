@@ -1,13 +1,40 @@
 import * as AWS from "aws-sdk";
 import * as uuid from 'node-uuid';
 import logger from "../@aiteq/messenger-bot/logger";
+import { format } from "date-fns";
 const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 export const surveyPublisher = {
-  saveAnswerFromUser: ({profile, question, answer, surveyId, profileId}) => {
+  publishAnswer: ({
+    first_name,
+    last_name,
+    profile_pic,
+    gender,
+    timezone,
+    question,
+    answer,
+    surveyId,
+    questionIdx,
+    profileId,
+    language
+  }) => {
 
     const params = {
-      MessageBody: JSON.stringify({id: uuid.v1(), profile, question, answer, surveyId, profileId}),
+      MessageBody: JSON.stringify({
+        id: uuid.v1(),
+        first_name,
+        last_name,
+        profile_pic,
+        language,
+        gender,
+        timezone,
+        question,
+        answer,
+        surveyId,
+        questionIdx,
+        profileId,
+        datetime: format(new Date(), "YYYY-MM-DD HH:mm:ss Z")
+      }),
       QueueUrl: process.env.SQS_URL,
       DelaySeconds: 0
     };

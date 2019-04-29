@@ -6,7 +6,8 @@ const docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2019-04-29'});
 const sampleSurvey = {
   id: 1,
   defaultLanguage: "English",
-  questions: [{
+  questions: [
+    {
     "type": "askWithMessage",
     "param": {
       "English": {
@@ -14,11 +15,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Pidgin",
-          "payload": JSON.stringify({data: {break: false, language: "Pidgin"}})
+          "payload": JSON.stringify({data: {language: "Pidgin", "answer": "Pidgin"}})
         }, {
           "content_type": "text",
           "title": "English",
-          "payload": JSON.stringify({data: {break: false, language: "English"}})
+          "payload": JSON.stringify({data: {language: "English", "answer": "English"}})
         }]
       },
       "Pidgin": {
@@ -26,11 +27,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Pidgin",
-          "payload": JSON.stringify({data: {break: false, language: "Pidgin"}})
+          "payload": JSON.stringify({data: {language: "Pidgin", "answer": "Pidgin"}})
         }, {
           "content_type": "text",
           "title": "English",
-          "payload": JSON.stringify({data: {break: false, language: "English"}})
+          "payload": JSON.stringify({data: {language: "English", "answer": "English"}})
         }]
       }
     }
@@ -54,7 +55,7 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Let Go!",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Let Go!"}})
         }]
       },
       "Pidgin": {
@@ -62,7 +63,7 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Let Go!",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Let Go!"}})
         }]
       }
 
@@ -75,11 +76,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {break: true, "answer": "NO"}})
         }]
       },
       "Pidgin": {
@@ -87,11 +88,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {break: true, "answer": "NO"}})
         }]
       }
 
@@ -104,19 +105,19 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Mosquitos",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Mosquitos"}})
         }, {
           "content_type": "text",
           "title": "From sick people",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {break: true, "answer": "From sick people"}})
         }, {
           "content_type": "text",
           "title": "Dirty hands",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {break: true, "answer": "Dirty hands"}})
         }, {
           "content_type": "text",
           "title": "Other",
-          "payload": JSON.stringify({data: {break: true}})
+          "payload": JSON.stringify({data: {break: true, "answer": "Other"}})
         }]
       },
       "Pidgin": {
@@ -124,7 +125,7 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Mosquitos",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Mosquitos"}})
         }, {
           "content_type": "text",
           "title": "From sick people",
@@ -149,11 +150,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       },
       "Pidgin": {
@@ -161,11 +162,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       }
     }
@@ -177,11 +178,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       },
       "Pidgin": {
@@ -189,11 +190,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       }
     }
@@ -205,15 +206,15 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Very Likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Very Likely"}})
         }, {
           "content_type": "text",
           "title": "Somewhat Likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Somewhat Likely"}})
         }, {
           "content_type": "text",
           "title": "Not likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Not likely"}})
         }]
       },
       "Pidgin": {
@@ -221,15 +222,15 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "text",
           "title": "Very Likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Very Likely"}})
         }, {
           "content_type": "text",
           "title": "Somewhat Likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Somewhat Likely"}})
         }, {
           "content_type": "text",
           "title": "Not likely",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "Not likely"}})
         }]
       }
     }
@@ -247,11 +248,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "location",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       },
       "Pidgin": {
@@ -259,11 +260,11 @@ const sampleSurvey = {
         "quick_replies": [{
           "content_type": "location",
           "title": "YES",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "YES"}})
         }, {
           "content_type": "text",
           "title": "NO",
-          "payload": JSON.stringify({data: {break: false}})
+          "payload": JSON.stringify({data: {"answer": "NO"}})
         }]
       }
     }
