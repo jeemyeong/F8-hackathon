@@ -1,5 +1,9 @@
 import * as AWS from "aws-sdk";
-AWS.config.update({region: 'us-west-2'});
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: 'us-west-2'
+});
 import { BotServer, BotUtils, Webhook } from './@aiteq/messenger-bot';
 import { format } from "date-fns";
 import { surveyHandler } from "./handler/surveyHandler";
