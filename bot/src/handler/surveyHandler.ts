@@ -2,7 +2,8 @@ import { Chat } from '../@aiteq/messenger-bot';
 import { surveyRepository } from "../repository/surveyRepository";
 
 export const surveyHandler = async (chat: Chat) => {
-  const profile = await chat.getUserProfile()
+  const profileId = chat.getPartnerId();
+  const profile = await chat.getUserProfile();
 
   const {
     id: surveyId,
@@ -11,16 +12,20 @@ export const surveyHandler = async (chat: Chat) => {
   } = await surveyRepository.getSurvey();
   let language = defaultLanguage;
 
-  for await (const q of questions) {
-    console.log(q);
-    console.log(q.param);
-    console.log(q.param[language])
-    const ans = await chat[q.type](q.param[language]);
+  for await (const question of questions) {
+    console.log(question);
+    console.log(question.param);
+    console.log(question.param[language]);
+    const answer = await chat[question.type](question.param[language]);
 
-    if (!!ans && !!ans.data && ans.data.language) {
-      language = ans.data.language;
+    if (!!answer && !!answer.data) {
+      surveyRepository.saveAnswerFromUser({profile, question, answer, surveyId, profileId});
     }
-    if (!!ans && !!ans.data && ans.data.break) {
+
+    if (!!answer && !!answer.data && answer.data.language) {
+      language = answer.data.language;
+    }
+    if (!!answer && !!answer.data && answer.data.break) {
       chat.say("Thank you for participating our survey");
       break;
     }

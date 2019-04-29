@@ -1,3 +1,7 @@
+import * as AWS from 'aws-sdk';
+import * as uuid from 'node-uuid';
+AWS.config.update({region: 'us-west-2'});
+const docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2019-04-29'});
 
 const sampleSurvey = {
   id: 1,
@@ -277,8 +281,44 @@ export const surveyRepository = {
   initSurveyFromUser: () => {
 
   },
-  saveAnswerFromUser: () => {
+  saveAnswerFromUser: ({profile, question, answer, surveyId, profileId}) => {
 
+    const params = {
+      TableName: 'answers',
+      Item: {
+        id: uuid.v1(), profile, question, answer, surveyId, profileId
+      }
+    };
+
+
+    docClient.put(params, function(err, data) {
+      if (err) {
+        console.log("[AWS_DOC_CLIENT] Error: ", err);
+      } else {
+        console.log("[AWS_DOC_CLIENT] Success: ", data);
+      }
+    });
+  },
+
+  getAnswersFromUser: ({profileId}) => {
+    const params = {
+      ExpressionAttributeValues: {
+        ':p': profileId
+      },
+      KeyConditionExpression: 'profileId = :p',
+      TableName: 'answers'
+    };
+    return new Promise((resolve, reject) => {
+      docClient.query(params, function(err, data) {
+        if (err) {
+          console.log("[AWS_DOC_CLIENT] Error: ", err);
+          reject(err)
+        } else {
+          console.log("[AWS_DOC_CLIENT] Success: ", data);
+          resolve(data)
+        }
+      });
+    })
   },
   saveAnswersFromUser: () => {
 
