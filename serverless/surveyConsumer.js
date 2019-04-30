@@ -1,4 +1,3 @@
-// @ts-ignore
 const AWS = require("aws-sdk");
 const dynamoDb = new AWS.DynamoDB.DocumentClient({region: 'us-west-2', apiVersion: '2019-04-29'});
 console.log('Loading function');
@@ -12,7 +11,6 @@ exports.handler = async (event) => {
       Item: JSON.parse(body)
     };
 
-    // @ts-ignore
     await dynamoDb.update(params, function(err, data) {
       if (err) {
         console.error("[AWS_DOC_CLIENT] Error: ", err);
