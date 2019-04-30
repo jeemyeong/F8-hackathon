@@ -28,6 +28,7 @@ botUtils.sendText(process.env.MY_RECIPIENT_ID, `Refresh [${format(new Date(), "H
 bot.on(Webhook.Event.PERSISTENT_MENU, "get-started", surveyHandler);
 bot.on(Webhook.Event.GET_STARTED_BUTTON, "get-started", surveyHandler);
 bot.on(Webhook.Event.TEXT_MESSAGE, surveyHandler);
+bot.on(Webhook.Event.REFERRAL, surveyHandler);
 
 // @ts-ignore
 const app = bot.app;

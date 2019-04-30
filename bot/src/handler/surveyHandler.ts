@@ -10,9 +10,9 @@ export const surveyHandler = async (chat: Chat) => {
     "Get Started",
     profileId,
   ).then(() => {
-    logger.debug("Event successfully logged to FBA.");
+    logger.debug("[FBA-Logger] Event successfully logged to FBA.");
   }).catch((err) => {
-    logger.error(err);
+    logger.error(`[FBA-Logger] ${err}`);
   });
 
   const {
@@ -38,9 +38,9 @@ export const surveyHandler = async (chat: Chat) => {
       `survey-${surveyId}--question-${questionIdx}`,
       profileId,
     ).then(() => {
-      logger.debug("Event successfully logged to FBA.");
+      logger.debug("[FBA-Logger] Event successfully logged to FBA.");
     }).catch((err) => {
-      logger.error(err);
+      logger.error(`[FBA-Logger] ${err}`);
     });
 
     logger.debug({answer})

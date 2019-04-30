@@ -51,8 +51,7 @@ export class ChatService extends RouterService {
             (req.body as Webhook.Request).entry.forEach((entry: Webhook.MessageEntry) => {
 
                 logger.info(`received meesage for page https://www.facebook.com/${entry.id}`);
-
-                entry.messaging.forEach((item: Webhook.MessagingItem) => {
+                !!entry.messaging && entry.messaging.forEach((item: Webhook.MessagingItem) => {
 
                     // get cached or create new Chat
                     const chat: Chat = this.chats.get(item.sender.id) || (() => {
@@ -110,6 +109,12 @@ export class ChatService extends RouterService {
                         // a POSTBACK request received
 
                         this.processPostback(item.postback, chat);
+
+                    } else if (item.referral) {
+
+                      // a POSTBACK request received
+
+                      this.processPostback(item.postback, chat);
 
                     } else {
 
@@ -240,7 +245,29 @@ export class ChatService extends RouterService {
         this.emit(Webhook.Event.POSTBACK, chat, payload.data);
     }
 
-    /**
+  /**
+   * Process an incoming POSTBACK.
+   *
+   * @param {Webhook.Referral} referral
+   * @param {Chat} chat
+   */
+  private processReferral(referral: Webhook.Referral, chat: Chat): void {
+
+    logger.debug("recieved Referral from", referral.ref, referral.source);
+
+    // emit IDENTIFIED REFERRAL event
+    referral.ref && this.emit(`${Webhook.Event.REFERRAL}:${referral.source}:${referral.ref}`, chat, referral.ref);
+
+    // emit SOURCE TYPED REFERRAL event
+    this.emit(`${Webhook.Event.REFERRAL}:${referral.source}`, chat, referral.ref);
+
+    // finally emit general REFERRAL event
+    this.emit(Webhook.Event.REFERRAL, chat, referral.ref);
+  }
+
+
+
+  /**
      * Process an incoming QUICK REPLY.
      *
      * @param {Webhook.Message} message

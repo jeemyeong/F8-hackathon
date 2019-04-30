@@ -22,6 +22,7 @@ export interface MessagingItem {
     delivery?: DeliveryInfo;
     read?: ReadInfo;
     optin?: PluginOptin;
+    referral?: Referral
 }
 
 export interface Sender {
@@ -140,6 +141,7 @@ export enum Event {
     MESSAGE_ECHO = "echo",
     POSTBACK = "postback",
     ATTACHMENT = "attachment",
+    REFERRAL = "referral",
     ATTACHMENT_IMAGE = "attachment:image",
     ATTACHMENT_AUDIO = "attachment:audio",
     ATTACHMENT_VIDEO = "attachment:video",
