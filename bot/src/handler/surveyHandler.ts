@@ -30,6 +30,8 @@ export const surveyHandler = async (chat: Chat) => {
     }
     logger.debug(question);
     logger.debug(question.param);
+    await chat.typingOn();
+    await chat.wait(0.5)
     const answer = await chat[question.type](question.param[language]);
 
     fbaLogger.logEvent(
