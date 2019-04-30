@@ -16,14 +16,6 @@ export const surveyHandler = async (chat: Chat) => {
   });
 
   const {
-    first_name,
-    last_name,
-    profile_pic,
-    gender,
-    timezone
-  } = await chat.getUserProfile();
-
-  const {
     id: surveyId,
     questions,
     defaultLanguage
@@ -52,11 +44,6 @@ export const surveyHandler = async (chat: Chat) => {
     logger.debug({answer})
     if (!!answer && !!answer.data) {
       surveyPublisher.publishAnswer({
-        first_name,
-        last_name,
-        profile_pic,
-        gender,
-        timezone,
         question: question.param[language].text || question.param[language],
         answer: answer.data.answer,
         surveyId,
@@ -66,11 +53,6 @@ export const surveyHandler = async (chat: Chat) => {
       });
     } else if (!!answer && !!answer.coordinates) {
       surveyPublisher.publishAnswer({
-        first_name,
-        last_name,
-        profile_pic,
-        gender,
-        timezone,
         question: question.param[language].text || question.param[language],
         answer: answer.coordinates,
         surveyId,

@@ -6,11 +6,6 @@ const sqs = new AWS.SQS({apiVersion: '2012-11-05'});
 
 export const surveyPublisher = {
   publishAnswer: ({
-    first_name,
-    last_name,
-    profile_pic,
-    gender,
-    timezone,
     question,
     answer,
     surveyId,
@@ -22,12 +17,7 @@ export const surveyPublisher = {
     const params = {
       MessageBody: JSON.stringify({
         id: uuid.v1(),
-        first_name,
-        last_name,
-        profile_pic,
         language,
-        gender,
-        timezone,
         question,
         answer,
         surveyId,
