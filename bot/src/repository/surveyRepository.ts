@@ -324,7 +324,7 @@ const sampleSurvey = {
           }, {
             "content_type": "text",
             "title": "35",
-            "payload": JSON.stringify({data: {"answer": "35"}})
+            "payload": JSON.stringify({data: {"answer": "35+"}})
           }]
         },
         "Pidgin": {
@@ -344,7 +344,7 @@ const sampleSurvey = {
           }, {
             "content_type": "text",
             "title": "35",
-            "payload": JSON.stringify({data: {"answer": "35"}})
+            "payload": JSON.stringify({data: {"answer": "35+"}})
           }]
         }
       }
