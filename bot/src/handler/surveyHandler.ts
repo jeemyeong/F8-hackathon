@@ -2,14 +2,23 @@ import { Chat } from '../@aiteq/messenger-bot';
 import { surveyRepository } from "../repository/surveyRepository";
 import logger from "../@aiteq/messenger-bot/logger";
 import { surveyPublisher } from "../event-publisher/surveyPublisher";
+import { fbaLogger } from "../fbaLogger";
 
 export const surveyHandler = async (chat: Chat) => {
   const profileId = chat.getPartnerId();
+  fbaLogger.logEvent(
+    "Get Started",
+    profileId,
+  ).then(() => {
+    logger.debug("Event successfully logged to FBA.");
+  }).catch((err) => {
+    logger.error(err);
+  });
+
   const {
     first_name,
     last_name,
     profile_pic,
-    locale,
     gender,
     timezone
   } = await chat.getUserProfile();
@@ -30,6 +39,15 @@ export const surveyHandler = async (chat: Chat) => {
     logger.debug(question);
     logger.debug(question.param);
     const answer = await chat[question.type](question.param[language]);
+
+    fbaLogger.logEvent(
+      `survey-${surveyId}--question-${questionIdx}`,
+      profileId,
+    ).then(() => {
+      logger.debug("Event successfully logged to FBA.");
+    }).catch((err) => {
+      logger.error(err);
+    });
 
     logger.debug({answer})
     if (!!answer && !!answer.data) {

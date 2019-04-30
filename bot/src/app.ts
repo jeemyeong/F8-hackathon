@@ -1,4 +1,6 @@
 import * as AWS from "aws-sdk";
+require('dotenv').config();
+
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -8,7 +10,6 @@ import { BotServer, BotUtils, Webhook } from './@aiteq/messenger-bot';
 import { format } from "date-fns";
 import { surveyHandler } from "./handler/surveyHandler";
 
-require('dotenv').config();
 
 
 let bot = new BotServer({
