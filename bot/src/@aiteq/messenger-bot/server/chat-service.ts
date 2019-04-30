@@ -114,7 +114,7 @@ export class ChatService extends RouterService {
 
                       // a POSTBACK request received
 
-                      this.processPostback(item.postback, chat);
+                      this.processReferral(item.referral, chat);
 
                     } else {
 
