@@ -323,7 +323,7 @@ const sampleSurvey = {
             "payload": JSON.stringify({data: {"answer": "25-34"}})
           }, {
             "content_type": "text",
-            "title": "35",
+            "title": "35+",
             "payload": JSON.stringify({data: {"answer": "35+"}})
           }]
         },
@@ -343,7 +343,7 @@ const sampleSurvey = {
             "payload": JSON.stringify({data: {"answer": "25-34"}})
           }, {
             "content_type": "text",
-            "title": "35",
+            "title": "35+",
             "payload": JSON.stringify({data: {"answer": "35+"}})
           }]
         }
